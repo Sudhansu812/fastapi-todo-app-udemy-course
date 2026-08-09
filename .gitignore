@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+venv/
+.venv/
+.totoenv/
+env/.env
+todos.db
+logs/
