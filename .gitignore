@@ -4,5 +4,5 @@ venv/
 .venv/
 .totoenv/
 env/.env
-todos.db
+*.db
 logs/

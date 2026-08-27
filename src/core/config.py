@@ -19,6 +19,9 @@ class Settings(BaseSettings):
     MYSQL_PASSWORD: str=""
     PGSQL_PASSWORD: str=""
     MSSQL_PASSWORD: str=""
+    
+    JWT_SECRET: str=""
+    ALGORITHM: str="HS256"
 
     class Config:
         env_file= os.path.join(os.path.dirname(__file__), "..", "..", "env", ".env")
@@ -39,5 +42,12 @@ class Settings(BaseSettings):
     def mssql_url(self) -> str:
         return f"mssql+pyodbc://sa:{self.MSSQL_PASSWORD}@{self.MSSQL_HOST}:{self.MSSQL_PORT}/{self.MSSQL_DB}?driver=ODBC+Driver+18+for+SQL+Server&TrustServerCertificate=yes"
 
+    @property
+    def jwt_secret(self) -> str:
+        return self.JWT_SECRET
+    
+    @property
+    def algorithm(self) -> str:
+        return self.ALGORITHM
 
 settings = Settings()

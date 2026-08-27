@@ -2,11 +2,12 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from src.api.v1.api import api_router
 from src.core.database import Base, engine
+import src.models  # noqa: F401 — registers all models on Base.metadata before create_all
 from src.middleware.logging import LoggingMiddleware
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    Base.metadata.create_all(bind=engine)
+    # Base.metadata.create_all(bind=engine)
     yield
 
 app = FastAPI(lifespan=lifespan)
