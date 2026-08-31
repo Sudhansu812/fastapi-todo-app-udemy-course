@@ -1,5 +1,6 @@
-from fastapi import APIRouter, HTTPException, Path
+from fastapi import APIRouter, Depends, HTTPException, Path
 from starlette import status
+from src.api.role_deps import require_role
 from src.crud.todo import create_todo, delete_todo, get_todos, update_todo, get_todos_by_user, get_todo_by_user
 from src.schemas.todo import TodoRequest, TodoResponse
 from src.api.deps import db_dependency
@@ -22,7 +23,7 @@ async def get_by_id(db: db_dependency, user: user_dependency, todo_id: int = Pat
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Todo not found.")
     return todo
 
-@router.post("/create", response_model=TodoResponse, status_code=status.HTTP_201_CREATED)
+@router.post("/create", response_model=TodoResponse, status_code=status.HTTP_201_CREATED, dependencies=[Depends(require_role("usr"))])
 async def create(todo: TodoRequest, db: db_dependency, user: user_dependency):
     final_todo = create_todo(todo=todo, owner_id=user.user_id, db=db)
     return final_todo

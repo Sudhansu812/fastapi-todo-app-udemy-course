@@ -27,8 +27,8 @@ roles_table = sa.table(
 )
 
 DEFAULT_ROLES = [
-    {"code": "admin", "name": "Administrator", "description": "Full access to all resources.", "is_active": True},
-    {"code": "user", "name": "User", "description": "Standard access — can manage their own todos.", "is_active": True},
+    {"code": "adm", "name": "Administrator", "description": "Full access to all resources.", "is_active": True},
+    {"code": "usr", "name": "User", "description": "Standard access — can manage their own todos.", "is_active": True},
 ]
 
 

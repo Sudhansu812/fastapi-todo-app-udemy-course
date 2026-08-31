@@ -9,7 +9,7 @@ class UserRequest(BaseModel):
     email: str = Field(min_length=1, max_length=128)
     username: str = Field(min_length=1, max_length=128)
     password: str = Field(min_length=1, max_length=128)
-    role: Optional[str] = Field(max_length=128, description="User might not have a role when created.")
+    # role: Optional[str] = Field(max_length=128, description="User might not have a role when created.")
     
 class UserResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
@@ -20,7 +20,7 @@ class UserResponse(BaseModel):
     email: str = Field(min_length=1, max_length=128)
     username: str = Field(min_length=1, max_length=128)
     is_active: Optional[bool] = Field(description="By default this will be true.", default=True)
-    role: Optional[str] = Field(max_length=128, description="User might not have a role when created.")
+    # role: Optional[str] = Field(max_length=128, description="User might not have a role when created.")
     
 class UserLoginRequest(BaseModel):
     model_config = ConfigDict(from_attributes=True)
@@ -33,6 +33,6 @@ class Token(BaseModel):
     token_type: str
     
 class TokenData(BaseModel):
-    username: str
     user_id: int
-    role: list[str]
+    username: str
+    roles: list[str] = []

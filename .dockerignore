@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.git/
+.totoenv/
+venv/
+.venv/
+env/
+*.db
+logs/
+Dockerfile
+.dockerignore
+.gitignore
+README.md
